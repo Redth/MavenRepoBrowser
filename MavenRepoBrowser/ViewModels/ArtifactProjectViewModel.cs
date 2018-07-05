@@ -13,7 +13,7 @@ namespace MavenRepoBrowser.ViewModels
             Items.Add(new ProjectInfoItemViewModel("Name", project.Name));
             Items.Add(new ProjectInfoItemViewModel("Version", version));
             Items.Add(new ProjectInfoItemViewModel("Type", project.Packaging));
-            Items.Add(new ProjectActionItemViewModel("Download", async () =>
+            Items.Add(new ProjectActionItemViewModel("Download " + project.Packaging, async () =>
             {
                 var svc = DependencyService.Get<IDownloadService>();
 
@@ -28,6 +28,18 @@ namespace MavenRepoBrowser.ViewModels
             Items.Add(new ProjectActionItemViewModel("Dependencies", () => {
                 navigation.PushAsync(new ArtifactDependencyListPage(project));
             }));
+			Items.Add(new ProjectActionItemViewModel("Download .pom", async () =>
+			{
+				var svc = DependencyService.Get<IDownloadService>();
+
+				if (svc != null)
+				{
+					var filename = project.ArtifactId + "-" + version + ".pom";
+
+					using (var stream = await MavenService.GetArtifactFileAsync(project.GroupId, project.ArtifactId, version, ".pom"))
+						await svc.SaveStreamAsync(filename, stream);
+				}
+			}));
         }
 
         public Project MavenProject { get; set; }
