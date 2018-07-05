@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleName</key>
-	<string>MavenRepoBrowser.Mac</string>
+	<string>Maven Repo Browser</string>
 	<key>CFBundleIdentifier</key>
-	<string>codes.redth.MavenRepoBrowser-Mac</string>
+	<string>codes.redth.mavenrepobrowser</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>

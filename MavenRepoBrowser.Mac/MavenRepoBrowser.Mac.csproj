@@ -7,7 +7,7 @@
     <ProjectTypeGuids>{A3F8F2AB-B479-4A4A-A458-A89E7DC349F1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
     <RootNamespace>MavenRepoBrowser.Mac</RootNamespace>
-    <AssemblyName>MavenRepoBrowser.Mac</AssemblyName>
+    <AssemblyName>MavenRepoBrowser</AssemblyName>
     <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <TargetFrameworkIdentifier>Xamarin.Mac</TargetFrameworkIdentifier>
@@ -32,20 +32,17 @@
     <OutputPath>bin\Release</OutputPath>
     <DefineConstants></DefineConstants>
     <WarningLevel>4</WarningLevel>
-    <IncludeMonoRuntime>false</IncludeMonoRuntime>
-    <UseSGen>true</UseSGen>
+    <IncludeMonoRuntime>true</IncludeMonoRuntime>
+    <UseSGen>false</UseSGen>
     <HttpClientHandler></HttpClientHandler>
     <LinkMode>SdkOnly</LinkMode>
     <XamMacArch></XamMacArch>
     <PlatformTarget>x86</PlatformTarget>
-    <LinkMode>SdkOnly</LinkMode>
-    <XamMacArch></XamMacArch>
     <AOTMode>None</AOTMode>
     <EnableCodeSigning>true</EnableCodeSigning>
     <CreatePackage>true</CreatePackage>
     <EnablePackageSigning>true</EnablePackageSigning>
-    <UseRefCounting>true</UseRefCounting>
-    <LinkMode>SdkOnly</LinkMode>
+    <UseRefCounting>false</UseRefCounting>
     <PlatformTarget>x86</PlatformTarget>
     <CodeSigningKey>3rd Party Mac Developer Application: Jonathan Dick (85HMA3YHJX)</CodeSigningKey>
     <CodeSignProvision></CodeSignProvision>
@@ -98,6 +95,10 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="DownloadService.cs" />
+    <Compile Include="ViewController.cs" />
+    <Compile Include="ViewController.designer.cs">
+      <DependentUpon>ViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />
