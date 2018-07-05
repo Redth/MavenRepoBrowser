@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{91B1AC14-D0E9-4233-9334-7125710430FB}</ProjectGuid>
+    <ProjectTypeGuids>{A3F8F2AB-B479-4A4A-A458-A89E7DC349F1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>MavenRepoBrowser.Mac</RootNamespace>
+    <AssemblyName>MavenRepoBrowser.Mac</AssemblyName>
+    <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkIdentifier>Xamarin.Mac</TargetFrameworkIdentifier>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants></DefineConstants>
+    <WarningLevel>4</WarningLevel>
+    <IncludeMonoRuntime>false</IncludeMonoRuntime>
+    <UseSGen>false</UseSGen>
+    <HttpClientHandler>HttpClientHandler</HttpClientHandler>
+    <LinkMode>None</LinkMode>
+    <XamMacArch></XamMacArch>
+    <AOTMode>None</AOTMode>
+    <CodeSigningKey>Mac Developer</CodeSigningKey>
+    <PackageSigningKey>3rd Party Mac Developer Installer</PackageSigningKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <DefineConstants></DefineConstants>
+    <WarningLevel>4</WarningLevel>
+    <IncludeMonoRuntime>false</IncludeMonoRuntime>
+    <UseSGen>true</UseSGen>
+    <HttpClientHandler></HttpClientHandler>
+    <LinkMode>SdkOnly</LinkMode>
+    <XamMacArch></XamMacArch>
+    <PlatformTarget>x86</PlatformTarget>
+    <LinkMode>SdkOnly</LinkMode>
+    <XamMacArch></XamMacArch>
+    <AOTMode>None</AOTMode>
+    <EnableCodeSigning>true</EnableCodeSigning>
+    <CreatePackage>true</CreatePackage>
+    <EnablePackageSigning>true</EnablePackageSigning>
+    <UseRefCounting>true</UseRefCounting>
+    <LinkMode>SdkOnly</LinkMode>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeSigningKey>3rd Party Mac Developer Application: Jonathan Dick (85HMA3YHJX)</CodeSigningKey>
+    <CodeSignProvision></CodeSignProvision>
+    <PackageSigningKey>3rd Party Mac Developer Installer: Jonathan Dick (85HMA3YHJX)</PackageSigningKey>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.Mac" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="MavenNet">
+      <HintPath>..\packages\MavenNet.2.0.2\lib\netstandard2.0\MavenNet.dll</HintPath>
+    </Reference>
+    <Reference Include="MonkeyCache">
+      <HintPath>..\packages\MonkeyCache.0.1.0.10-beta\lib\xamarinmac20\MonkeyCache.dll</HintPath>
+    </Reference>
+    <Reference Include="MonkeyCache.FileStore">
+      <HintPath>..\packages\MonkeyCache.FileStore.0.1.0.10-beta\lib\xamarinmac20\MonkeyCache.FileStore.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon_16x16.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon_16x16%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon_32x32.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon_32x32%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon_128x128.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon_128x128%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon_256x256.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon_256x256%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon_512x512.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon_512x512%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="DownloadService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Main.storyboard" />
+  </ItemGroup>
+  <Import Project="..\MavenRepoBrowser\MavenRepoBrowser.projitems" Label="Shared" Condition="Exists('..\MavenRepoBrowser\MavenRepoBrowser.projitems')" />
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
+</Project>
