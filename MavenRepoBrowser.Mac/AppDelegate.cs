@@ -36,5 +36,11 @@ namespace MavenRepoBrowser.Mac
         {
             // Insert code here to tear down your application
         }
+
+		[Action("clearCache:")]
+		public void clearCache(NSObject sender)
+		{
+			MavenService.ClearCache();
+		}
     }
 }

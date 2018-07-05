@@ -22,6 +22,11 @@ namespace MavenRepoBrowser
 
         static MonkeyCache.IBarrel Cache => MonkeyCache.FileStore.Barrel.Current;
 
+        public static void ClearCache()
+        {
+            Cache.EmptyAll();
+        }
+
         public static async Task LoadAsync()
         {
             Cache.EmptyExpired();
