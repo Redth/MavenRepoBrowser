@@ -4,7 +4,7 @@
         <Grid>
             <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
                 <ActivityIndicator x:Name="activityIndicator" IsEnabled="true" IsRunning="true" />
-                <Label FontAttributes="Bold" Text="Loading Maven Information..." />
+                <Label FontAttributes="Bold" Text="Loading Maven Information..." HorizontalOptions="Center" HorizontalTextAlignment="Center" />
             </StackLayout>
         </Grid>
     </ContentPage.Content>

@@ -47,14 +47,20 @@ namespace MavenRepoBrowser
                 Groups.Add(g);
         }
 
+        public static Group GetGroup(string groupId)
+            => Groups?.FirstOrDefault(g => g.Id == groupId);
+
+        public static Artifact GetArtifact(string groupId, string artifactId)
+            => Groups?.FirstOrDefault(g => g.Id == groupId)?.Artifacts?.FirstOrDefault(a => a.Id == artifactId);
+        
         public static async Task<Project> GetProjectAsync(Artifact artifact, string version)
         {
-            Cache.EmptyExpired();
+            //Cache.EmptyExpired();
 
-            var cacheKey = $"PROJECT-{artifact.GroupId}.{artifact.Id}.{version}";
-            var cachedProject = Cache.Get<Project>(cacheKey);
-            if (cachedProject != null)
-                return cachedProject;
+            //var cacheKey = $"PROJECT-{artifact.GroupId}.{artifact.Id}.{version}";
+            //var cachedProject = Cache.Get<Project>(cacheKey);
+            //if (cachedProject != null)
+            //    return cachedProject;
 
             Project project = null;
 
@@ -64,7 +70,29 @@ namespace MavenRepoBrowser
             using (var sr = new StreamReader(pomStream))
                 project = (Project)serializer.Deserialize(sr);
 
-            Cache.Add(cacheKey, project, TimeSpan.FromDays(1));
+            //Cache.Add(cacheKey, project, TimeSpan.FromDays(1));
+
+            return project;
+        }
+
+        public static async Task<Project> GetProjectAsync(string groupId, string artifactId, string version)
+        {
+            //Cache.EmptyExpired();
+
+            //var cacheKey = $"PROJECT-{groupId}.{artifactId}.{version}";
+            //var cachedProject = Cache.Get<Project>(cacheKey);
+            //if (cachedProject != null)
+            //    return cachedProject;
+
+            Project project = null;
+
+            var serializer = new XmlSerializer(typeof(Project));
+
+            using (var pomStream = await repository.OpenArtifactPomFile(groupId, artifactId, version).ConfigureAwait(false))
+            using (var sr = new StreamReader(pomStream))
+                project = (Project)serializer.Deserialize(sr);
+
+            //Cache.Add(cacheKey, project, TimeSpan.FromDays(1));
 
             return project;
         }

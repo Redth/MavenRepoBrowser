@@ -40,6 +40,21 @@ namespace MavenRepoBrowser.ViewModels
 						await svc.SaveStreamAsync(filename, stream);
 				}
 			}));
+            Items.Add(new ProjectActionItemViewModel("View .pom", async () =>
+            {
+                var filename = project.ArtifactId + "-" + version + ".pom";
+
+                using (var stream = await MavenService.GetArtifactFileAsync(project.GroupId, project.ArtifactId, version, ".pom"))
+                using (var ms = new System.IO.MemoryStream())
+                {
+                    await stream.CopyToAsync(ms);
+                    var txt = System.Text.Encoding.Default.GetString(ms.ToArray());
+
+                    await navigation.PushAsync(new MavenRepoBrowser.FileViewerPage(txt));
+
+                }
+                    
+            }));
         }
 
         public Project MavenProject { get; set; }

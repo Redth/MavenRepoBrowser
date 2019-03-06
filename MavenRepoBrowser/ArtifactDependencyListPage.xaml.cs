@@ -17,5 +17,23 @@ namespace MavenRepoBrowser
         }
 
         ViewModels.ArtifactDependencyListViewModel viewModel;
+
+        private async void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            var dep = e.SelectedItem as Dependency;
+
+            var project = await MavenService.GetProjectAsync(dep.GroupId, dep.ArtifactId, dep.Version);
+
+            if (project != null)
+                await Navigation.PushAsync(new ArtifactProjectPage(project, dep.Version));
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            //listView.SelectedItem = null;
+        }
+
     }
 }

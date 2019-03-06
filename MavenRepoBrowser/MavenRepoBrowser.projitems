@@ -43,10 +43,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)FileViewerPage.xaml.cs">
+      <DependentUpon>FileViewerPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)GroupListPage.xaml.cs">
       <DependentUpon>GroupListPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)MavenService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\FileViewerViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\GroupListViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LoadingPage.xaml.cs">
       <DependentUpon>LoadingPage.xaml</DependentUpon>
@@ -70,6 +75,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)IDownloadService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)FileViewerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

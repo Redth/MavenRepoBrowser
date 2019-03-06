@@ -17,18 +17,20 @@ namespace MavenRepoBrowser
         }
 
         ViewModels.GroupListViewModel viewModel;
-
+        
         public INavigation Nav { get; set; }
         async void Handle_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
             var group = e.SelectedItem as Group;
+
+            var groupId = group.Id;
 
             App.Instance.CloseDrawer();
 
             var n = Nav ?? this.Navigation;
 
             await n.PopToRootAsync(false);
-            await n.PushAsync(new ArtifactListPage(group), !App.Instance.IsDesktop);
+            await n.PushAsync(new ArtifactListPage(groupId), !App.Instance.IsDesktop);
         }
     }
 }

@@ -26,5 +26,12 @@ namespace MavenRepoBrowser
 
             vm?.Command();
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            //listView.SelectedItem = null;
+        }
     }
 }

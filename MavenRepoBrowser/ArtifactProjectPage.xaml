@@ -35,9 +35,10 @@
     <ContentPage.Content>
         <StackLayout>
 
-            <ListView ItemsSource="{Binding Items}" ItemTemplate="{StaticResource projectItemTemplateSelector}" ItemSelected="Handle_ItemSelected">
+            <ListView x:Name="listView" ItemsSource="{Binding Items}" ItemTemplate="{StaticResource projectItemTemplateSelector}" ItemSelected="Handle_ItemSelected">
                 
             </ListView>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

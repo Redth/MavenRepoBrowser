@@ -7,12 +7,17 @@ namespace MavenRepoBrowser
 {
     public partial class ArtifactVersionListPage : ContentPage
     {
-        public ArtifactVersionListPage(Artifact mavenArtifact)
+        public ArtifactVersionListPage(string groupId, string artifactId)
         {
             InitializeComponent();
 
-            Title = mavenArtifact.Id;
+            var mavenArtifact = MavenService.GetArtifact(groupId, artifactId);
 
+            if (mavenArtifact == null)
+                return;
+
+            Title = mavenArtifact.Id;
+            
             viewModel = new ViewModels.ArtifactVersionListViewModel(mavenArtifact);
 
             BindingContext = viewModel;
@@ -28,6 +33,8 @@ namespace MavenRepoBrowser
 
             if (project != null)
                 await Navigation.PushAsync(new ArtifactProjectPage(project, version.Version));
+
+            //listView.SelectedItem = null;
         }
     }
 }

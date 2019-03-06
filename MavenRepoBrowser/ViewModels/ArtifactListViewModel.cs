@@ -8,8 +8,13 @@ namespace MavenRepoBrowser.ViewModels
 {
     public class ArtifactListViewModel
     {
-        public ArtifactListViewModel(Group mavenGroup)
+        public ArtifactListViewModel(string groupId)
         {
+            var mavenGroup = MavenService.GetGroup(groupId);
+
+            if (mavenGroup == null)
+                return;
+
             foreach (var a in mavenGroup.Artifacts.OrderBy (a => a.GroupId + "." + a.Id))
                 MavenArtifacts.Add(a);
         }

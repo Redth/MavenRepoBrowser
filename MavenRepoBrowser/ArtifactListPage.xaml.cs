@@ -7,13 +7,13 @@ namespace MavenRepoBrowser
 {
     public partial class ArtifactListPage : ContentPage
     {
-        public ArtifactListPage(Group mavenGroup)
+        public ArtifactListPage(string groupId)
         {
             InitializeComponent();
 
-            Title = mavenGroup.Id;
+            Title = groupId;
 
-            viewModel = new ViewModels.ArtifactListViewModel(mavenGroup);
+            viewModel = new ViewModels.ArtifactListViewModel(groupId);
 
             BindingContext = viewModel;
         }
@@ -24,7 +24,9 @@ namespace MavenRepoBrowser
         {
             var selectedArtifact = e.SelectedItem as Artifact;
 
-            await Navigation.PushAsync(new ArtifactVersionListPage(selectedArtifact));
+            await Navigation.PushAsync(new ArtifactVersionListPage(selectedArtifact.GroupId, selectedArtifact.Id));
+
+            // listView.SelectedItem = null;
         }
-	}
+    }
 }
