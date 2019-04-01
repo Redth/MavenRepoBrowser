@@ -102,6 +102,16 @@ namespace MavenRepoBrowser
             return repository.OpenArtifactLibraryFile(groupId, artifactId, version, type);
         }
 
+        public static string GetArtifactFileUrl(string groupId, string artifactId, string version, string type)
+        {
+            var path = Path.Combine(Path.Combine(groupId.Split('.')), artifactId, version, artifactId + "-" + version + "." + type.ToLowerInvariant().TrimStart('.'));
+
+            var uriBuilder = new UriBuilder(((MavenNet.GoogleMavenRepository)repository).BaseUri);
+            uriBuilder.Path += path;
+
+            return uriBuilder.Uri.OriginalString;
+        }
+
         public static ObservableCollection<Group> Groups { get; set; } = new ObservableCollection<Group>();
     }
 }

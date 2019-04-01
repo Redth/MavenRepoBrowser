@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using MavenNet.Models;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace MavenRepoBrowser.ViewModels
@@ -13,6 +14,14 @@ namespace MavenRepoBrowser.ViewModels
             Items.Add(new ProjectInfoItemViewModel("Name", project.Name));
             Items.Add(new ProjectInfoItemViewModel("Version", version));
             Items.Add(new ProjectInfoItemViewModel("Type", project.Packaging));
+            Items.Add(new ProjectActionItemViewModel("Copy Download Url", async () =>
+            {
+                var url = MavenService.GetArtifactFileUrl(project.GroupId, project.ArtifactId, version, project.Packaging);
+
+                await Clipboard.SetTextAsync(url);
+
+                await navigation.NavigationStack[0].DisplayAlert("Url Copied", "The download url has been copied to the clipboard", "Ok");
+            }));
             Items.Add(new ProjectActionItemViewModel("Download " + project.Packaging, async () =>
             {
                 var svc = DependencyService.Get<IDownloadService>();
